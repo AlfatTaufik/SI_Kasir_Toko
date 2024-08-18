@@ -102,9 +102,11 @@ namespace SI_Kasir_Toko
                                 pdfDoc.Add(pdfTable);
                                 pdfDoc.Close();
                                 stream.Close();
-                            
-                            MessageBox.Show("Data Success di Print", "Info");
+
+                                MessageBox.Show("Data Success di Print", "Info");
+                            }
                         }
+
                         catch (Exception ex)
                         {
                             MessageBox.Show("Error :" + ex.Message);

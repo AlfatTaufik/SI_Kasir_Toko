@@ -61,9 +61,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(284, 449);
+            this.button2.Location = new System.Drawing.Point(426, 691);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 36);
+            this.button2.Size = new System.Drawing.Size(141, 55);
             this.button2.TabIndex = 29;
             this.button2.Text = "Print";
             this.button2.UseVisualStyleBackColor = true;
@@ -71,9 +72,10 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(41, 449);
+            this.btnLogout.Location = new System.Drawing.Point(62, 691);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(94, 36);
+            this.btnLogout.Size = new System.Drawing.Size(141, 55);
             this.btnLogout.TabIndex = 27;
             this.btnLogout.Text = "Back";
             this.btnLogout.UseVisualStyleBackColor = true;
@@ -83,19 +85,23 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView1.Location = new System.Drawing.Point(4, 24);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(437, 108);
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.Size = new System.Drawing.Size(656, 166);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(41, 116);
+            this.groupBox1.Location = new System.Drawing.Point(62, 178);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(443, 127);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(664, 195);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data Barang";
@@ -106,9 +112,10 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Javanese Text", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button3.Location = new System.Drawing.Point(393, 449);
+            this.button3.Location = new System.Drawing.Point(590, 691);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(85, 36);
+            this.button3.Size = new System.Drawing.Size(128, 55);
             this.button3.TabIndex = 16;
             this.button3.Text = "Payment";
             this.button3.UseVisualStyleBackColor = false;
@@ -118,82 +125,90 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Javanese Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 23);
+            this.label2.Location = new System.Drawing.Point(52, 35);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(449, 36);
+            this.label2.Size = new System.Drawing.Size(630, 54);
             this.label2.TabIndex = 13;
             this.label2.Text = "Berikut Adalah Barang Yang Tersedia Pada Toko Anda";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(38, 380);
+            this.label6.Location = new System.Drawing.Point(57, 585);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 13);
+            this.label6.Size = new System.Drawing.Size(101, 20);
             this.label6.TabIndex = 32;
             this.label6.Text = "Total Belanja";
             // 
             // fieldTotalBelanja
             // 
-            this.fieldTotalBelanja.Location = new System.Drawing.Point(112, 378);
+            this.fieldTotalBelanja.Location = new System.Drawing.Point(168, 582);
+            this.fieldTotalBelanja.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fieldTotalBelanja.Maximum = new decimal(new int[] {
             -1530494977,
             232830,
             0,
             0});
             this.fieldTotalBelanja.Name = "fieldTotalBelanja";
-            this.fieldTotalBelanja.Size = new System.Drawing.Size(124, 20);
+            this.fieldTotalBelanja.Size = new System.Drawing.Size(186, 26);
             this.fieldTotalBelanja.TabIndex = 36;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(38, 416);
+            this.label7.Location = new System.Drawing.Point(57, 640);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 13);
+            this.label7.Size = new System.Drawing.Size(66, 20);
             this.label7.TabIndex = 32;
             this.label7.Text = "Nominal";
             // 
             // fieldNominal
             // 
-            this.fieldNominal.Location = new System.Drawing.Point(112, 414);
+            this.fieldNominal.Location = new System.Drawing.Point(168, 637);
+            this.fieldNominal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fieldNominal.Maximum = new decimal(new int[] {
             -1530494977,
             232830,
             0,
             0});
             this.fieldNominal.Name = "fieldNominal";
-            this.fieldNominal.Size = new System.Drawing.Size(124, 20);
+            this.fieldNominal.Size = new System.Drawing.Size(186, 26);
             this.fieldNominal.TabIndex = 36;
             this.fieldNominal.ValueChanged += new System.EventHandler(this.fieldNominal_ValueChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(280, 382);
+            this.label8.Location = new System.Drawing.Point(420, 588);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.Size = new System.Drawing.Size(83, 20);
             this.label8.TabIndex = 32;
             this.label8.Text = "Kembalian";
             // 
             // fieldKembalian
             // 
-            this.fieldKembalian.Location = new System.Drawing.Point(354, 380);
+            this.fieldKembalian.Location = new System.Drawing.Point(531, 585);
+            this.fieldKembalian.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fieldKembalian.Maximum = new decimal(new int[] {
             -1530494977,
             232830,
             0,
             0});
             this.fieldKembalian.Name = "fieldKembalian";
-            this.fieldKembalian.Size = new System.Drawing.Size(124, 20);
+            this.fieldKembalian.Size = new System.Drawing.Size(186, 26);
             this.fieldKembalian.TabIndex = 36;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(111, 87);
+            this.label9.Location = new System.Drawing.Point(166, 134);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(135, 13);
+            this.label9.Size = new System.Drawing.Size(202, 20);
             this.label9.TabIndex = 40;
             this.label9.Text = "*berdasarkan nama barang";
             // 
@@ -203,27 +218,31 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearch.Font = new System.Drawing.Font("Javanese Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSearch.Location = new System.Drawing.Point(274, 62);
+            this.btnSearch.Location = new System.Drawing.Point(411, 95);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(210, 29);
-            this.btnSearch.TabIndex = 39;
+            this.btnSearch.Size = new System.Drawing.Size(315, 45);
+            this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // fieldSearched
             // 
-            this.fieldSearched.Location = new System.Drawing.Point(41, 64);
+            this.fieldSearched.Location = new System.Drawing.Point(62, 98);
+            this.fieldSearched.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fieldSearched.Name = "fieldSearched";
-            this.fieldSearched.Size = new System.Drawing.Size(206, 20);
-            this.fieldSearched.TabIndex = 38;
+            this.fieldSearched.Size = new System.Drawing.Size(307, 26);
+            this.fieldSearched.TabIndex = 1;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView2);
-            this.groupBox2.Location = new System.Drawing.Point(41, 249);
+            this.groupBox2.Location = new System.Drawing.Point(62, 383);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(443, 127);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Size = new System.Drawing.Size(664, 195);
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Keranjang";
@@ -238,42 +257,54 @@
             this.Jumlah,
             this.Total});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView2.Location = new System.Drawing.Point(4, 24);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(437, 108);
+            this.dataGridView2.RowHeadersWidth = 62;
+            this.dataGridView2.Size = new System.Drawing.Size(656, 166);
             this.dataGridView2.TabIndex = 0;
             // 
             // Code
             // 
             this.Code.HeaderText = "Code Barang";
+            this.Code.MinimumWidth = 8;
             this.Code.Name = "Code";
+            this.Code.Width = 150;
             // 
             // Nama
             // 
             this.Nama.HeaderText = "Nama Barang";
+            this.Nama.MinimumWidth = 8;
             this.Nama.Name = "Nama";
+            this.Nama.Width = 150;
             // 
             // Harga
             // 
             this.Harga.HeaderText = "Harga Barang";
+            this.Harga.MinimumWidth = 8;
             this.Harga.Name = "Harga";
+            this.Harga.Width = 150;
             // 
             // Jumlah
             // 
             this.Jumlah.HeaderText = "Jumlah Belanja";
+            this.Jumlah.MinimumWidth = 8;
             this.Jumlah.Name = "Jumlah";
+            this.Jumlah.Width = 150;
             // 
             // Total
             // 
             this.Total.HeaderText = "Total Harga";
+            this.Total.MinimumWidth = 8;
             this.Total.Name = "Total";
+            this.Total.Width = 150;
             // 
             // FormRiwayat
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 506);
+            this.ClientSize = new System.Drawing.Size(825, 778);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.fieldSearched);
@@ -289,6 +320,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label2);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormRiwayat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRiwayat";

@@ -50,10 +50,11 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLogin.Font = new System.Drawing.Font("Javanese Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnLogin.Location = new System.Drawing.Point(125, 203);
+            this.btnLogin.Location = new System.Drawing.Point(188, 312);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(94, 31);
-            this.btnLogin.TabIndex = 9;
+            this.btnLogin.Size = new System.Drawing.Size(141, 48);
+            this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -61,9 +62,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(31, 237);
+            this.label4.Location = new System.Drawing.Point(46, 365);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 13);
+            this.label4.Size = new System.Drawing.Size(161, 20);
             this.label4.TabIndex = 8;
             this.label4.Text = "Dont Have Account ?";
             // 
@@ -71,44 +73,49 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Javanese Text", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(26, 32);
+            this.label2.Location = new System.Drawing.Point(39, 49);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(173, 47);
+            this.label2.Size = new System.Drawing.Size(255, 73);
             this.label2.TabIndex = 7;
             this.label2.Text = "SirCashier App";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 64);
+            this.label3.Location = new System.Drawing.Point(46, 98);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(223, 13);
+            this.label3.Size = new System.Drawing.Size(335, 20);
             this.label3.TabIndex = 5;
             this.label3.Text = "Insert Your Username and Password to Login.";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 23);
+            this.label1.Location = new System.Drawing.Point(46, 35);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.Size = new System.Drawing.Size(97, 20);
             this.label1.TabIndex = 6;
             this.label1.Text = "Welcome To";
             // 
             // fieldUsername
             // 
-            this.fieldUsername.Location = new System.Drawing.Point(34, 101);
+            this.fieldUsername.Location = new System.Drawing.Point(51, 155);
+            this.fieldUsername.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fieldUsername.Name = "fieldUsername";
-            this.fieldUsername.Size = new System.Drawing.Size(185, 20);
-            this.fieldUsername.TabIndex = 11;
+            this.fieldUsername.Size = new System.Drawing.Size(276, 26);
+            this.fieldUsername.TabIndex = 1;
             // 
             // fieldPassword
             // 
-            this.fieldPassword.Location = new System.Drawing.Point(34, 143);
+            this.fieldPassword.Location = new System.Drawing.Point(51, 220);
+            this.fieldPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fieldPassword.Name = "fieldPassword";
             this.fieldPassword.PasswordChar = '*';
-            this.fieldPassword.Size = new System.Drawing.Size(185, 20);
-            this.fieldPassword.TabIndex = 12;
+            this.fieldPassword.Size = new System.Drawing.Size(276, 26);
+            this.fieldPassword.TabIndex = 2;
             // 
             // btnCancel
             // 
@@ -116,9 +123,10 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Javanese Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCancel.Location = new System.Drawing.Point(34, 203);
+            this.btnCancel.Location = new System.Drawing.Point(51, 312);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(85, 31);
+            this.btnCancel.Size = new System.Drawing.Size(128, 48);
             this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -127,9 +135,10 @@
             // linkRegister
             // 
             this.linkRegister.AutoSize = true;
-            this.linkRegister.Location = new System.Drawing.Point(144, 237);
+            this.linkRegister.Location = new System.Drawing.Point(216, 365);
+            this.linkRegister.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkRegister.Name = "linkRegister";
-            this.linkRegister.Size = new System.Drawing.Size(75, 13);
+            this.linkRegister.Size = new System.Drawing.Size(112, 20);
             this.linkRegister.TabIndex = 13;
             this.linkRegister.TabStop = true;
             this.linkRegister.Text = "Register Here.";
@@ -138,28 +147,31 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 83);
+            this.label5.Location = new System.Drawing.Point(46, 128);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.Size = new System.Drawing.Size(83, 20);
             this.label5.TabIndex = 6;
             this.label5.Text = "Username";
             // 
             // textPw
             // 
             this.textPw.AutoSize = true;
-            this.textPw.Location = new System.Drawing.Point(31, 124);
+            this.textPw.Location = new System.Drawing.Point(46, 191);
+            this.textPw.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.textPw.Name = "textPw";
-            this.textPw.Size = new System.Drawing.Size(53, 13);
+            this.textPw.Size = new System.Drawing.Size(78, 20);
             this.textPw.TabIndex = 6;
             this.textPw.Text = "Password";
             // 
             // checkBoxPw
             // 
             this.checkBoxPw.AutoSize = true;
-            this.checkBoxPw.Location = new System.Drawing.Point(34, 169);
+            this.checkBoxPw.Location = new System.Drawing.Point(51, 260);
+            this.checkBoxPw.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBoxPw.Name = "checkBoxPw";
-            this.checkBoxPw.Size = new System.Drawing.Size(111, 17);
-            this.checkBoxPw.TabIndex = 14;
+            this.checkBoxPw.Size = new System.Drawing.Size(161, 24);
+            this.checkBoxPw.TabIndex = 3;
             this.checkBoxPw.Text = "Show Password ?";
             this.checkBoxPw.UseVisualStyleBackColor = true;
             this.checkBoxPw.CheckedChanged += new System.EventHandler(this.checkBoxPw_CheckedChanged);
@@ -167,19 +179,20 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SI_Kasir_Toko.Properties.Resources.LoginForm;
-            this.pictureBox1.Location = new System.Drawing.Point(270, 23);
+            this.pictureBox1.Location = new System.Drawing.Point(405, 35);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(255, 229);
+            this.pictureBox1.Size = new System.Drawing.Size(382, 352);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(546, 275);
+            this.ClientSize = new System.Drawing.Size(819, 423);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBoxPw);
             this.Controls.Add(this.linkRegister);
@@ -193,6 +206,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textPw);
             this.Controls.Add(this.label5);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login -  SirCashier App";
