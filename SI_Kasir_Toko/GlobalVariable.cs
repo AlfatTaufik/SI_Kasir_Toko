@@ -14,6 +14,7 @@ namespace SI_Kasir_Toko
         public static DBContextDataContext Db = new DBContextDataContext();
         public static Form1 getStarted;
         public static LoginForm loginForm;
+        public static SupplierForm supplierForm;
         public static RegisterForm registerForm;
         public static AdminDashboardForm dashboardAdmin;
         public static KasirDashboardForm dashboardKasir;

@@ -20,12 +20,18 @@
         <elementListCompartment Id="e91e90f1-ea2e-4848-a435-b23b63c7f162" absoluteBounds="6.39, 2.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.25 : 2.51044840494792); (6.375 : 2.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.25 : 2.51044840494792); (6.375 : 2.51044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DBContextDataContext/Barang/Barang_Transaction" />
       <nodes>
         <classShapeMoniker Id="b71eff41-9cf0-4360-86bf-0662f38da256" />
         <classShapeMoniker Id="bb1f02d7-6fd1-4930-a438-3efa2cf3f4f7" />
       </nodes>
     </associationConnector>
+    <classShape Id="95397c7e-bcaf-4123-ad32-5b2dc79b0c31" absoluteBounds="0.625, 1.375, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/DBContextDataContext/Supplier" />
+      <nestedChildShapes>
+        <elementListCompartment Id="56e14cc0-0937-4d31-a25c-4dd663aeaabd" absoluteBounds="0.64000000000000012, 1.835, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -39,6 +39,9 @@ namespace SI_Kasir_Toko
     partial void InsertTransaction(Transaction instance);
     partial void UpdateTransaction(Transaction instance);
     partial void DeleteTransaction(Transaction instance);
+    partial void InsertSupplier(Supplier instance);
+    partial void UpdateSupplier(Supplier instance);
+    partial void DeleteSupplier(Supplier instance);
     #endregion
 		
 		public DBContextDataContext() : 
@@ -92,6 +95,14 @@ namespace SI_Kasir_Toko
 			get
 			{
 				return this.GetTable<Transaction>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Supplier> Suppliers
+		{
+			get
+			{
+				return this.GetTable<Supplier>();
 			}
 		}
 	}
@@ -686,6 +697,308 @@ namespace SI_Kasir_Toko
 						this._IDBarang = default(int);
 					}
 					this.SendPropertyChanged("Barang");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Supplier")]
+	public partial class Supplier : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _CodeSupplier;
+		
+		private string _NamaSupplier;
+		
+		private int _Telephone;
+		
+		private string _Alamat;
+		
+		private int _NoRekening;
+		
+		private string _NPWP;
+		
+		private string _Kota;
+		
+		private string _Negara;
+		
+		private string _Provinsi;
+		
+		private int _KodePos;
+		
+		private int _Fax;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCodeSupplierChanging(int value);
+    partial void OnCodeSupplierChanged();
+    partial void OnNamaSupplierChanging(string value);
+    partial void OnNamaSupplierChanged();
+    partial void OnTelephoneChanging(int value);
+    partial void OnTelephoneChanged();
+    partial void OnAlamatChanging(string value);
+    partial void OnAlamatChanged();
+    partial void OnNoRekeningChanging(int value);
+    partial void OnNoRekeningChanged();
+    partial void OnNPWPChanging(string value);
+    partial void OnNPWPChanged();
+    partial void OnKotaChanging(string value);
+    partial void OnKotaChanged();
+    partial void OnNegaraChanging(string value);
+    partial void OnNegaraChanged();
+    partial void OnProvinsiChanging(string value);
+    partial void OnProvinsiChanged();
+    partial void OnKodePosChanging(int value);
+    partial void OnKodePosChanged();
+    partial void OnFaxChanging(int value);
+    partial void OnFaxChanged();
+    #endregion
+		
+		public Supplier()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodeSupplier", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int CodeSupplier
+		{
+			get
+			{
+				return this._CodeSupplier;
+			}
+			set
+			{
+				if ((this._CodeSupplier != value))
+				{
+					this.OnCodeSupplierChanging(value);
+					this.SendPropertyChanging();
+					this._CodeSupplier = value;
+					this.SendPropertyChanged("CodeSupplier");
+					this.OnCodeSupplierChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NamaSupplier", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string NamaSupplier
+		{
+			get
+			{
+				return this._NamaSupplier;
+			}
+			set
+			{
+				if ((this._NamaSupplier != value))
+				{
+					this.OnNamaSupplierChanging(value);
+					this.SendPropertyChanging();
+					this._NamaSupplier = value;
+					this.SendPropertyChanged("NamaSupplier");
+					this.OnNamaSupplierChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telephone", DbType="Int NOT NULL")]
+		public int Telephone
+		{
+			get
+			{
+				return this._Telephone;
+			}
+			set
+			{
+				if ((this._Telephone != value))
+				{
+					this.OnTelephoneChanging(value);
+					this.SendPropertyChanging();
+					this._Telephone = value;
+					this.SendPropertyChanged("Telephone");
+					this.OnTelephoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Alamat", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Alamat
+		{
+			get
+			{
+				return this._Alamat;
+			}
+			set
+			{
+				if ((this._Alamat != value))
+				{
+					this.OnAlamatChanging(value);
+					this.SendPropertyChanging();
+					this._Alamat = value;
+					this.SendPropertyChanged("Alamat");
+					this.OnAlamatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoRekening", DbType="Int NOT NULL")]
+		public int NoRekening
+		{
+			get
+			{
+				return this._NoRekening;
+			}
+			set
+			{
+				if ((this._NoRekening != value))
+				{
+					this.OnNoRekeningChanging(value);
+					this.SendPropertyChanging();
+					this._NoRekening = value;
+					this.SendPropertyChanged("NoRekening");
+					this.OnNoRekeningChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NPWP", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string NPWP
+		{
+			get
+			{
+				return this._NPWP;
+			}
+			set
+			{
+				if ((this._NPWP != value))
+				{
+					this.OnNPWPChanging(value);
+					this.SendPropertyChanging();
+					this._NPWP = value;
+					this.SendPropertyChanged("NPWP");
+					this.OnNPWPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kota", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Kota
+		{
+			get
+			{
+				return this._Kota;
+			}
+			set
+			{
+				if ((this._Kota != value))
+				{
+					this.OnKotaChanging(value);
+					this.SendPropertyChanging();
+					this._Kota = value;
+					this.SendPropertyChanged("Kota");
+					this.OnKotaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Negara", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Negara
+		{
+			get
+			{
+				return this._Negara;
+			}
+			set
+			{
+				if ((this._Negara != value))
+				{
+					this.OnNegaraChanging(value);
+					this.SendPropertyChanging();
+					this._Negara = value;
+					this.SendPropertyChanged("Negara");
+					this.OnNegaraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Provinsi", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Provinsi
+		{
+			get
+			{
+				return this._Provinsi;
+			}
+			set
+			{
+				if ((this._Provinsi != value))
+				{
+					this.OnProvinsiChanging(value);
+					this.SendPropertyChanging();
+					this._Provinsi = value;
+					this.SendPropertyChanged("Provinsi");
+					this.OnProvinsiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KodePos", DbType="Int NOT NULL")]
+		public int KodePos
+		{
+			get
+			{
+				return this._KodePos;
+			}
+			set
+			{
+				if ((this._KodePos != value))
+				{
+					this.OnKodePosChanging(value);
+					this.SendPropertyChanging();
+					this._KodePos = value;
+					this.SendPropertyChanged("KodePos");
+					this.OnKodePosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fax", DbType="Int NOT NULL")]
+		public int Fax
+		{
+			get
+			{
+				return this._Fax;
+			}
+			set
+			{
+				if ((this._Fax != value))
+				{
+					this.OnFaxChanging(value);
+					this.SendPropertyChanging();
+					this._Fax = value;
+					this.SendPropertyChanged("Fax");
+					this.OnFaxChanged();
 				}
 			}
 		}

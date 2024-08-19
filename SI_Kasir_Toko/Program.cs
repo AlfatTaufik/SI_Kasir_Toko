@@ -24,6 +24,7 @@ namespace SI_Kasir_Toko
             dashboardKasir = new KasirDashboardForm();
             formBarang = new FormBarang();
             formPetugas = new FormPetugas();
+            supplierForm = new SupplierForm();
             formRiwayat = new FormRiwayat();
             formTransaksi = new FormTransaksi();
             stockBarang = new StockBarangForm();

@@ -32,7 +32,7 @@ namespace SI_Kasir_Toko
 
         private void btnRiwayat_Click(object sender, EventArgs e)
         {
-            formTransaksi.Show();
+            supplierForm.Show();
             this.Hide();
         }
 
