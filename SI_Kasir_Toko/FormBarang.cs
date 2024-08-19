@@ -152,22 +152,30 @@ namespace SI_Kasir_Toko
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0 || fieldBarang.Text != null)
+            if (dataGridView1.SelectedRows.Count > 0 || !string.IsNullOrEmpty(fieldBarang.Text))
             {
-                var result = MessageBox.Show("Yakin ingin menghapus data ini?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var result = MessageBox.Show("Yakin ingin mengubah stok barang ini menjadi 0?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    var deleteListed = Db.Barangs.FirstOrDefault(i => i.NamaBarang == fieldBarang.Text);
-                    Db.Barangs.DeleteOnSubmit(deleteListed);
-                    Db.SubmitChanges();
-                    MessageBox.Show("Data Berhasil Dihapus", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var barang = Db.Barangs.FirstOrDefault(i => i.NamaBarang == fieldBarang.Text);
+                    if (barang != null)
+                    {
+                        barang.StokBarang = 0; // Mengubah stok barang menjadi 0
+                        Db.SubmitChanges();
+                        MessageBox.Show("Stok barang berhasil diubah menjadi 0", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Barang tidak ditemukan", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("Silakan pilih data yang ingin anda hapus lebih dahulu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Silakan pilih data yang ingin anda ubah lebih dahulu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {

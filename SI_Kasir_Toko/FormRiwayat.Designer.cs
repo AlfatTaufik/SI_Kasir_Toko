@@ -45,11 +45,6 @@
             this.fieldSearched = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nama = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Harga = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Jumlah = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fieldTotalBelanja)).BeginInit();
@@ -154,6 +149,7 @@
             this.fieldTotalBelanja.Name = "fieldTotalBelanja";
             this.fieldTotalBelanja.Size = new System.Drawing.Size(186, 26);
             this.fieldTotalBelanja.TabIndex = 36;
+            this.fieldTotalBelanja.ValueChanged += new System.EventHandler(this.fieldTotalBelanja_ValueChanged);
             // 
             // label7
             // 
@@ -250,12 +246,6 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Code,
-            this.Nama,
-            this.Harga,
-            this.Jumlah,
-            this.Total});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(4, 24);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -264,41 +254,8 @@
             this.dataGridView2.RowHeadersWidth = 62;
             this.dataGridView2.Size = new System.Drawing.Size(656, 166);
             this.dataGridView2.TabIndex = 0;
-            // 
-            // Code
-            // 
-            this.Code.HeaderText = "Code Barang";
-            this.Code.MinimumWidth = 8;
-            this.Code.Name = "Code";
-            this.Code.Width = 150;
-            // 
-            // Nama
-            // 
-            this.Nama.HeaderText = "Nama Barang";
-            this.Nama.MinimumWidth = 8;
-            this.Nama.Name = "Nama";
-            this.Nama.Width = 150;
-            // 
-            // Harga
-            // 
-            this.Harga.HeaderText = "Harga Barang";
-            this.Harga.MinimumWidth = 8;
-            this.Harga.Name = "Harga";
-            this.Harga.Width = 150;
-            // 
-            // Jumlah
-            // 
-            this.Jumlah.HeaderText = "Jumlah Belanja";
-            this.Jumlah.MinimumWidth = 8;
-            this.Jumlah.Name = "Jumlah";
-            this.Jumlah.Width = 150;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total Harga";
-            this.Total.MinimumWidth = 8;
-            this.Total.Name = "Total";
-            this.Total.Width = 150;
+            this.dataGridView2.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellValueChanged);
+            this.dataGridView2.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView2_RowsRemoved);
             // 
             // FormRiwayat
             // 
@@ -356,10 +313,5 @@
         private System.Windows.Forms.TextBox fieldSearched;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nama;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Harga;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Jumlah;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
     }
 }

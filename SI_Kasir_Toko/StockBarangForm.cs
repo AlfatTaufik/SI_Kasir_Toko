@@ -54,7 +54,7 @@ namespace SI_Kasir_Toko
                                     Harga = barang.HargaBarang,
                                     Stock = barang.StokBarang,
                                     Tanggal_Masuk = barang.DataMasuk
-                                }).Where(i => i.Nama_Barang.ToLower().Contains(textSearched));
+                                }).Where(i => i.Nama_Barang.ToLower().Contains(textSearched) || i.Code_Barang.Equals(textSearched));
 
                 if (dataStock != null)
                 {

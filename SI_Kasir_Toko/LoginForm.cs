@@ -10,6 +10,8 @@ namespace SI_Kasir_Toko
         public LoginForm()
         {
             InitializeComponent();
+            var id = Db.Employees.FirstOrDefault(e => e.Role);
+            role = id.ID;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

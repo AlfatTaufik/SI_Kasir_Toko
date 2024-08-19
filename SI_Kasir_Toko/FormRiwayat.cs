@@ -22,6 +22,16 @@ namespace SI_Kasir_Toko
         public FormRiwayat()
         {
             InitializeComponent();
+
+            // Menambahkan kolom ke dataGridView2
+            dataGridView2.Columns.Add("Code", "Code");
+            dataGridView2.Columns.Add("Nama", "Nama");
+            dataGridView2.Columns.Add("Jumlah", "Jumlah");
+            dataGridView2.Columns.Add("Harga", "Harga");
+            dataGridView2.Columns.Add("Total", "Total");
+
+            dataGridView2.CellValueChanged += dataGridView2_CellValueChanged;
+            dataGridView2.RowsRemoved += dataGridView2_RowsRemoved;
         }
 
         private void FormRiwayat_Load(object sender, EventArgs e)
@@ -45,7 +55,14 @@ namespace SI_Kasir_Toko
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            if(role == 1)
+            {
             dashboardKasir.Show();
+            }
+            else
+            {
+            dashboardAdmin.Show();
+            }
             this.Hide();
         }
 
@@ -106,7 +123,6 @@ namespace SI_Kasir_Toko
                                 MessageBox.Show("Data Success di Print", "Info");
                             }
                         }
-
                         catch (Exception ex)
                         {
                             MessageBox.Show("Error :" + ex.Message);
@@ -132,30 +148,20 @@ namespace SI_Kasir_Toko
 
                 int newRowIdx = dataGridView2.Rows.Add();
 
-                // Mengambil baris yang baru saja ditambahkan
                 DataGridViewRow newRow = dataGridView2.Rows[newRowIdx];
-
-                // Menetapkan nilai ke kolom-kolom di dataGridView2
-                newRow.Cells["Code"].Value = newRowIdx + 2; // Misalnya, nomor urut
+                newRow.Cells["Code"].Value = newRowIdx + 1;
                 newRow.Cells["Nama"].Value = namaBarang;
-                newRow.Cells["Jumlah"].Value = 1; // Misalnya, jumlah default
+                newRow.Cells["Jumlah"].Value = 1;
                 newRow.Cells["Harga"].Value = hargaBarang;
-                newRow.Cells["Total"].Value = hargaBarang; // Misalnya, total default
+                newRow.Cells["Total"].Value = hargaBarang;
 
-                // Menghitung total berdasarkan jumlah dan harga
-                int jumlah = Convert.ToInt32(newRow.Cells["Jumlah"].Value);
-                int harga = Convert.ToInt32(newRow.Cells["Harga"].Value);
-                int total = Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["Total"].Value);
-                newRow.Cells["Total"].Value = jumlah * harga;
-
-                fieldTotalBelanja.Value = total;
-                fieldKembalian.Value = total - fieldNominal.Value;
+                UpdateTotalBelanja();
             }
         }
 
         private void fieldNominal_ValueChanged(object sender, EventArgs e)
         {
-            var kembali = fieldNominal.Value - fieldKembalian.Value;
+            var kembali = fieldNominal.Value - fieldTotalBelanja.Value;
             fieldKembalian.Value = kembali;
         }
 
@@ -165,24 +171,15 @@ namespace SI_Kasir_Toko
             if (!string.IsNullOrEmpty(fieldSearched.Text))
             {
                 var dataBarang = (from barang in Db.Barangs
-                                 select new
-                                 {
-                                     Kode = barang.ID,
-                                     Nama = barang.NamaBarang,
-                                     Harga = barang.HargaBarang,
-                                     Stock = barang.StokBarang,
-                                     Masuk = barang.DataMasuk
-                                 }).Where(i => i.Nama.ToLower().Contains(textSearched));
-                //dataGridView1.DataSource = dataBarang.ToList();
-
-                if (dataBarang != null)
-                {
-                    dataGridView1.DataSource = dataBarang.ToList();
-                }
-                else
-                {
-                    MessageBox.Show("Pastikan anda mencari berdasarkan nama barang", "Information", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                }
+                                  select new
+                                  {
+                                      Kode = barang.ID,
+                                      Nama = barang.NamaBarang,
+                                      Harga = barang.HargaBarang,
+                                      Stock = barang.StokBarang,
+                                      Masuk = barang.DataMasuk
+                                  }).Where(i => i.Nama.ToLower().Contains(textSearched));
+                dataGridView1.DataSource = dataBarang.ToList();
             }
             else
             {
@@ -194,69 +191,82 @@ namespace SI_Kasir_Toko
         {
             try
             {
-                // Get the last transaction by ID
-                var lastTransaction = Db.Transactions.OrderBy(i => i.ID).FirstOrDefault();
+                var lastTransaction = Db.Transactions.OrderByDescending(i => i.ID).FirstOrDefault();
+                int newTransactionId = lastTransaction != null ? lastTransaction.ID : 1;
 
-                // Initialize the new transaction ID
-                int newTransactionId = lastTransaction != null ? lastTransaction.ID + 1 : 1;
-
-                // Ensure there are rows in the data grid
                 if (dataGridView2.Rows.Count == 0)
                 {
                     MessageBox.Show("No items to transact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Ensure the total belanja field is not null and is an integer
                 if (!int.TryParse(fieldTotalBelanja.Value.ToString(), out int totalBelanja))
                 {
                     MessageBox.Show("Invalid total belanja value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Ensure the first cell value is not null and is an integer
                 if (!int.TryParse(dataGridView2.Rows[0].Cells[0].Value?.ToString(), out int idBarang))
                 {
                     MessageBox.Show("Invalid barang ID value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Debugging information
-                Console.WriteLine($"Trying to insert transaction with IDBarang: {idBarang}");
 
-                // Check if the IDBarang exists in the Barang table
-                var barangExists = Db.Barangs.Any(b => b.ID == idBarang);
-                if (!barangExists)
-                {
-                    MessageBox.Show($"Barang ID {idBarang} does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Create the new transaction
                 Transaction newTransaksi = new Transaction
                 {
-                    ID = newTransactionId,
+                    ID = newTransactionId + 1,
                     TotalHarga = totalBelanja,
-                    IDBarang = idBarang,
+                    IDBarang = 3,
                     JumlahTransaksi = dataGridView2.Rows.Count,
                     TransaksiAt = DateTime.Now
                 };
 
-                // Insert and submit the new transaction
                 Db.Transactions.InsertOnSubmit(newTransaksi);
                 Db.SubmitChanges();
 
-                // Show success message
                 MessageBox.Show("Berhasil menambahkan data transaksi", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                // Log the exception (this could be written to a file or other logging mechanism)
                 Console.WriteLine($"Exception: {ex.Message}");
                 MessageBox.Show($"Error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private void dataGridView2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            UpdateTotalBelanja();
+        }
+
+        private void dataGridView2_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            UpdateTotalBelanja();
+        }
+
+        private void UpdateTotalBelanja()
+        {
+            int totalBelanja = 0;
+
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.Cells["Jumlah"].Value != null && row.Cells["Harga"].Value != null)
+                {
+                    int jumlah = Convert.ToInt32(row.Cells["Jumlah"].Value);
+                    int harga = Convert.ToInt32(row.Cells["Harga"].Value);
+                    int total = jumlah * harga;
+
+                    row.Cells["Total"].Value = total;
+                    totalBelanja += total;
+                }
+            }
+
+            fieldTotalBelanja.Value = totalBelanja;
+        }
+
+        private void fieldTotalBelanja_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-    

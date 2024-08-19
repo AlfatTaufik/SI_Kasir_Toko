@@ -51,25 +51,29 @@ namespace SI_Kasir_Toko
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var textSearched = fieldSearched.Text;
+            var textSearched = fieldSearched.Text.ToLower();
             if (!string.IsNullOrEmpty(fieldSearched.Text))
             {
                 var dataTransaksi = (from transaksi in Db.Transactions
-                                    join barang in Db.Barangs on transaksi.IDBarang equals barang.ID
-                                    select new
-                                    {
-                                        Tanggal = transaksi.TransaksiAt,
-                                        Code_transaksi = transaksi.ID,
-                                        Code_Barang = transaksi.Barang,
-                                        Nama_Barang = barang.NamaBarang.ToString(),
-                                        Harga = barang.HargaBarang,
-                                        Jumlah = transaksi.JumlahTransaksi,
-                                        Total = transaksi.TotalHarga
-                                    }).Where(i => i.Nama_Barang.ToLower().Contains(textSearched));
+                                     join barang in Db.Barangs on transaksi.IDBarang equals barang.ID
+                                     select new
+                                     {
+                                         Code_Transaksi = transaksi.ID,
+                                         Code_Barang = transaksi.IDBarang,
+                                         Nama_Barang = barang.NamaBarang,
+                                         Harga = barang.HargaBarang,
+                                         Jumlah = transaksi.JumlahTransaksi,
+                                         Tanggal = transaksi.TransaksiAt,
+                                         Total = transaksi.TotalHarga
+                                     }).ToList(); // Panggil ToList() untuk memuat data ke dalam memori
 
-                if(dataTransaksi != null)
+                // Terapkan filter dalam memori menggunakan LINQ to Objects
+                var filteredDataTransaksi = dataTransaksi.Where(i => i.Nama_Barang.ToLower().Contains(textSearched) ||
+                                                                     i.Code_Transaksi.ToString().Equals(textSearched)).ToList();
+
+                if (dataTransaksi != null)
                 { 
-                dgvTransaksi.DataSource = dataTransaksi.ToList();
+                dgvTransaksi.DataSource = filteredDataTransaksi.ToList();
                 }
                 else
                 {
@@ -84,7 +88,14 @@ namespace SI_Kasir_Toko
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            dashboardKasir.Show();
+            if (role == 1)
+            {
+                dashboardKasir.Show();
+            }
+            else
+            {
+                dashboardAdmin.Show();
+            }
             this.Hide();
         }
 
