@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,7 +44,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(24, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 29);
+            this.label1.Size = new System.Drawing.Size(126, 45);
             this.label1.TabIndex = 0;
             this.label1.Text = "Welcome To";
             // 
@@ -53,7 +54,7 @@
             this.label2.Font = new System.Drawing.Font("Javanese Text", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(21, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 47);
+            this.label2.Size = new System.Drawing.Size(185, 73);
             this.label2.TabIndex = 1;
             this.label2.Text = "SirCashier";
             // 
@@ -62,7 +63,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(24, 144);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(278, 29);
+            this.label3.Size = new System.Drawing.Size(431, 45);
             this.label3.TabIndex = 0;
             this.label3.Text = "Perfect App to Manage Your Entire Transaction";
             // 
@@ -71,7 +72,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(24, 173);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(229, 29);
+            this.label4.Size = new System.Drawing.Size(352, 45);
             this.label4.TabIndex = 2;
             this.label4.Text = "Login To Know How SirCashier Work.";
             // 
@@ -105,13 +106,13 @@
             this.label5.Font = new System.Drawing.Font("Javanese Text", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(21, 97);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(138, 47);
+            this.label5.Size = new System.Drawing.Size(203, 73);
             this.label5.TabIndex = 1;
             this.label5.Text = "Application";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 45F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(637, 309);
@@ -123,6 +124,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Javanese Text", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
