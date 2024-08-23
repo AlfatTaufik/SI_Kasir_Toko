@@ -46,6 +46,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtBarang = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.fieldStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fieldHarga)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -263,6 +265,26 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(429, 289);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 20);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Search";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // txtBarang
+            // 
+            this.txtBarang.Location = new System.Drawing.Point(433, 314);
+            this.txtBarang.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBarang.Name = "txtBarang";
+            this.txtBarang.Size = new System.Drawing.Size(306, 26);
+            this.txtBarang.TabIndex = 1;
+            this.txtBarang.TextChanged += new System.EventHandler(this.txtBarang_TextChanged);
+            // 
             // FormBarang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -278,6 +300,8 @@
             this.Controls.Add(this.fieldStock);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtBarang);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.fieldBarang);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
@@ -319,5 +343,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtBarang;
     }
 }

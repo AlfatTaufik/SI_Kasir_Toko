@@ -48,6 +48,7 @@
             this.fieldSearched.Name = "fieldSearched";
             this.fieldSearched.Size = new System.Drawing.Size(752, 26);
             this.fieldSearched.TabIndex = 0;
+            this.fieldSearched.TextChanged += new System.EventHandler(this.fieldSearched_TextChanged);
             // 
             // btnSearch
             // 

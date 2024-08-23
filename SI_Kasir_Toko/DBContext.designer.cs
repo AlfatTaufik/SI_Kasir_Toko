@@ -42,6 +42,9 @@ namespace SI_Kasir_Toko
     partial void InsertSupplier(Supplier instance);
     partial void UpdateSupplier(Supplier instance);
     partial void DeleteSupplier(Supplier instance);
+    partial void InsertBarcode2(Barcode2 instance);
+    partial void UpdateBarcode2(Barcode2 instance);
+    partial void DeleteBarcode2(Barcode2 instance);
     #endregion
 		
 		public DBContextDataContext() : 
@@ -103,6 +106,14 @@ namespace SI_Kasir_Toko
 			get
 			{
 				return this.GetTable<Supplier>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Barcode2> Barcode2s
+		{
+			get
+			{
+				return this.GetTable<Barcode2>();
 			}
 		}
 	}
@@ -999,6 +1010,92 @@ namespace SI_Kasir_Toko
 					this._Fax = value;
 					this.SendPropertyChanged("Fax");
 					this.OnFaxChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Barcode2")]
+	public partial class Barcode2 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _BarcodeID;
+		
+		private string _Nama;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBarcodeIDChanging(long value);
+    partial void OnBarcodeIDChanged();
+    partial void OnNamaChanging(string value);
+    partial void OnNamaChanged();
+    #endregion
+		
+		public Barcode2()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarcodeID", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long BarcodeID
+		{
+			get
+			{
+				return this._BarcodeID;
+			}
+			set
+			{
+				if ((this._BarcodeID != value))
+				{
+					this.OnBarcodeIDChanging(value);
+					this.SendPropertyChanging();
+					this._BarcodeID = value;
+					this.SendPropertyChanged("BarcodeID");
+					this.OnBarcodeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nama", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nama
+		{
+			get
+			{
+				return this._Nama;
+			}
+			set
+			{
+				if ((this._Nama != value))
+				{
+					this.OnNamaChanging(value);
+					this.SendPropertyChanging();
+					this._Nama = value;
+					this.SendPropertyChanged("Nama");
+					this.OnNamaChanged();
 				}
 			}
 		}

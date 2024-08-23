@@ -5,6 +5,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Org.BouncyCastle.Math;
 
 namespace SI_Kasir_Toko
 {
@@ -20,14 +21,11 @@ namespace SI_Kasir_Toko
 
         private void loadDataBarang()
         {
-            var dataBarang = from barang in Db.Barangs
+            var dataBarang = from barang in Db.Barcode2s
                              select new
                              {
-                                 Kode = barang.ID,
-                                 Nama = barang.NamaBarang,
-                                 Harga = barang.HargaBarang,
-                                 Stock = barang.StokBarang,
-                                 Masuk = barang.DataMasuk
+                                 Kode = barang.BarcodeID,
+                                 Nama = barang.Nama,
                              };
             dataGridView1.DataSource = dataBarang.ToList();
         }
@@ -70,30 +68,33 @@ namespace SI_Kasir_Toko
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var latestId = Db.Barangs.OrderByDescending(i => i.ID).FirstOrDefault();
-            var IdNow = latestId.ID;
-            var newId = IdNow++;
-
             if (isInputValid())
             {
-                Barang newBarang = new Barang
+                if (long.TryParse(txtBarang.Text, out long barcodeIDValue))
                 {
-                    ID = newId,
-                    NamaBarang = fieldBarang.Text,
-                    HargaBarang = Convert.ToInt32(fieldHarga.Value),
-                    StokBarang = Convert.ToInt32(fieldStock.Value),
-                    DataMasuk = fieldDataMasuk.Value
-                };
+                    Barcode2 newBarang = new Barcode2
+                    {
+                        BarcodeID = barcodeIDValue,
+                        Nama = fieldBarang.Text
+                    };
 
-                Db.Barangs.InsertOnSubmit(newBarang);
-                Db.SubmitChanges();
-                MessageBox.Show("Data Barang Berhasil Dimasukan.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Db.Barcode2s.InsertOnSubmit(newBarang);
+                    Db.SubmitChanges();
+
+                    MessageBox.Show("Data Barang Berhasil Dimasukan.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadDataBarang(); // Refresh data setelah insert
+                }
+                else
+                {
+                    MessageBox.Show("Barcode ID tidak valid. Pastikan hanya angka yang dimasukkan dan dalam rentang yang benar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
                 MessageBox.Show("Pastikan Semua Data Sudah Terisi", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -110,7 +111,8 @@ namespace SI_Kasir_Toko
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
                 string namaBarang = selectedRow.Cells[1].Value != null ? selectedRow.Cells[1].Value.ToString() : "";
@@ -244,6 +246,42 @@ namespace SI_Kasir_Toko
             else
             {
                 MessageBox.Show("No Record To Export !!!", "Info");
+            }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtBarang_TextChanged(object sender, EventArgs e)
+        {
+            var textSearched = txtBarang.Text;
+            if (!string.IsNullOrEmpty(txtBarang.Text))
+            {
+                var dataTransaksi = (from transaksi in Db.Barcode2s
+                                     select new
+                                     {
+                                         Code_Transaksi = transaksi.BarcodeID,
+                                         Nama_Barang = transaksi.Nama,
+                                     }).ToList(); // Panggil ToList() untuk memuat data ke dalam memori
+
+                // Terapkan filter dalam memori menggunakan LINQ to Objects
+                var filteredDataTransaksi = dataTransaksi.Where(i => i.Nama_Barang.ToLower().Contains(textSearched) ||
+                                                                     i.Code_Transaksi.ToString().Equals(textSearched)).ToList();
+
+                if (dataTransaksi != null)
+                {
+                    dataGridView1.DataSource = filteredDataTransaksi.ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Pastikan anda mencari berdasarkan nama barang", "Information", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Silakan isi field search terlebih dahulu", "Information", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
     }

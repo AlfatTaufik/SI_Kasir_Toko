@@ -287,6 +287,5 @@ namespace SI_Kasir_Toko
                 MessageBox.Show("Tidak ada data yang dapat diekspor!", "Info");
             }
         }
-a
     }
 }

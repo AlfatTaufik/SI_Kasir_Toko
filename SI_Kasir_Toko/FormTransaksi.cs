@@ -178,5 +178,10 @@ namespace SI_Kasir_Toko
                 MessageBox.Show("No Record To Export !!!", "Info");
             }
         }
+
+        private void fieldSearched_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
