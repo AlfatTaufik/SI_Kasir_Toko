@@ -20,7 +20,7 @@
         <elementListCompartment Id="e91e90f1-ea2e-4848-a435-b23b63c7f162" absoluteBounds="6.39, 2.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.25 : 2.51044840494792); (6.375 : 2.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.25 : 3.08099609375); (6.375 : 3.08099609375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DBContextDataContext/Barang/Barang_Transaction" />
       <nodes>
         <classShapeMoniker Id="b71eff41-9cf0-4360-86bf-0662f38da256" />
@@ -33,10 +33,10 @@
         <elementListCompartment Id="56e14cc0-0937-4d31-a25c-4dd663aeaabd" absoluteBounds="0.64000000000000012, 1.835, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="151a4193-d465-4907-acfe-1173b13859eb" absoluteBounds="3.25, 0.625, 2, 1.1939925130208333">
+    <classShape Id="31fec87c-2057-49c0-91ca-d27d544119ee" absoluteBounds="4.875, 0.625, 2, 1.5785953776041666">
       <DataClassMoniker Name="/DBContextDataContext/Barcode2" />
       <nestedChildShapes>
-        <elementListCompartment Id="4bba7735-d802-446f-b054-e7317cc138a6" absoluteBounds="3.265, 1.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7322db98-e031-4e68-bd4d-13b1e8a31737" absoluteBounds="4.89, 1.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

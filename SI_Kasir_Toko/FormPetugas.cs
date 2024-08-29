@@ -147,8 +147,16 @@ namespace SI_Kasir_Toko
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            dashboardAdmin.Show();
-            this.Hide();
+            if (role == true)
+            {
+                dashboardKasir.Show();
+                this.Hide();
+            }
+            else
+            {
+                dashboardAdmin.Show();
+                this.Hide();
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

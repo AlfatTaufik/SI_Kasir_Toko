@@ -88,7 +88,7 @@ namespace SI_Kasir_Toko
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if (role == 1)
+            if (role == true)
             {
                 dashboardKasir.Show();
             }

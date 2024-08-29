@@ -152,7 +152,7 @@
             this.btnSupplier.TabIndex = 3;
             this.btnSupplier.Text = "Supplier";
             this.btnSupplier.UseVisualStyleBackColor = false;
-            this.btnSupplier.Click += new System.EventHandler(this.btnRiwayat_Click);
+            this.btnSupplier.Click += new System.EventHandler(this.btnSupplier_Click);
             // 
             // AdminDashboardForm
             // 

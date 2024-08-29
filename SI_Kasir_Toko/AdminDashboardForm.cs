@@ -32,7 +32,7 @@ namespace SI_Kasir_Toko
 
         private void btnRiwayat_Click(object sender, EventArgs e)
         {
-            supplierForm.Show();
+            formRiwayat.Show();
             this.Hide();
         }
 
@@ -45,6 +45,11 @@ namespace SI_Kasir_Toko
         private void AdminDashboardForm_Load(object sender, EventArgs e)
         {
             txtFullname.Text = fullName;
+        }
+
+        private void btnSupplier_Click(object sender, EventArgs e)
+        {
+            supplierForm.Show();
         }
     }
 }

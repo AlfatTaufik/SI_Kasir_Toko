@@ -22,7 +22,7 @@ namespace SI_Kasir_Toko
         public FormRiwayat()
         {
             InitializeComponent();
-
+            loadDataBarang();
             // Menambahkan kolom ke dataGridView2
             dataGridView2.Columns.Add("Code", "Code");
             dataGridView2.Columns.Add("Nama", "Nama");
@@ -55,13 +55,13 @@ namespace SI_Kasir_Toko
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if(role == 1)
+            if (role == true)
             {
-            dashboardKasir.Show();
+                dashboardKasir.Show();
             }
             else
             {
-            dashboardAdmin.Show();
+                dashboardAdmin.Show();
             }
             this.Hide();
         }
@@ -92,35 +92,57 @@ namespace SI_Kasir_Toko
                     {
                         try
                         {
-                            PdfPTable pdfTable = new PdfPTable(dataGridView2.Columns.Count);
-                            pdfTable.DefaultCell.Padding = 3;
-                            pdfTable.WidthPercentage = 100;
-                            pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
-
-                            foreach (DataGridViewColumn column in dataGridView2.Columns)
-                            {
-                                PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
-                                pdfTable.AddCell(cell);
-                            }
-
-                            foreach (DataGridViewRow row in dataGridView2.Rows)
-                            {
-                                foreach (DataGridViewCell cell in row.Cells)
-                                {
-                                    pdfTable.AddCell(cell.Value.ToString());
-                                }
-                            }
-
+                            // Membuat dokumen PDF
                             using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
                             {
                                 Document pdfDoc = new Document(PageSize.A4, 10f, 20f, 20f, 10f);
-                                PdfWriter.GetInstance(pdfDoc, stream);
+                                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
                                 pdfDoc.Open();
+
+                                // Menambahkan Header
+                                iTextSharp.text.Font headerFont = FontFactory.GetFont("Arial", 20, iTextSharp.text.Font.BOLD);
+                                Paragraph header = new Paragraph("Laporan Data Transaksi", headerFont);
+                                header.Alignment = Element.ALIGN_CENTER;
+                                pdfDoc.Add(header);
+
+                                // Menambahkan Footer
+                                iTextSharp.text.Font footerFont = FontFactory.GetFont("Arial", 10, iTextSharp.text.Font.ITALIC);
+                                Paragraph footer = new Paragraph($"Dicetak pada: {DateTime.Now}", footerFont);
+                                footer.Alignment = Element.ALIGN_RIGHT;
+                                pdfDoc.Add(footer);
+
+                                // Spasi sebelum tabel
+                                pdfDoc.Add(new Paragraph("\n"));
+
+                                // Menambahkan tabel dari DataGridView
+                                PdfPTable pdfTable = new PdfPTable(dataGridView2.Columns.Count);
+                                pdfTable.DefaultCell.Padding = 3;
+                                pdfTable.WidthPercentage = 100;
+                                pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                                // Menambahkan header kolom
+                                foreach (DataGridViewColumn column in dataGridView2.Columns)
+                                {
+                                    PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, headerFont));
+                                    cell.BackgroundColor = new iTextSharp.text.BaseColor(240, 240, 240);
+                                    pdfTable.AddCell(cell);
+                                }
+
+                                // Menambahkan data dari DataGridView
+                                foreach (DataGridViewRow row in dataGridView2.Rows)
+                                {
+                                    foreach (DataGridViewCell cell in row.Cells)
+                                    {
+                                        pdfTable.AddCell(new Phrase(cell.Value?.ToString() ?? string.Empty, FontFactory.GetFont("Arial", 10, iTextSharp.text.Font.NORMAL)));
+                                    }
+                                }
+
                                 pdfDoc.Add(pdfTable);
+
                                 pdfDoc.Close();
                                 stream.Close();
 
-                                MessageBox.Show("Data Success di Print", "Info");
+                                MessageBox.Show("Data berhasil di-print!", "Info");
                             }
                         }
                         catch (Exception ex)
@@ -212,12 +234,11 @@ namespace SI_Kasir_Toko
                     return;
                 }
 
-
                 Transaction newTransaksi = new Transaction
                 {
                     ID = newTransactionId + 1,
                     TotalHarga = totalBelanja,
-                    IDBarang = 3,
+                    IDBarang = 3, // Gantilah dengan ID yang valid
                     JumlahTransaksi = dataGridView2.Rows.Count,
                     TransaksiAt = DateTime.Now
                 };
@@ -252,12 +273,17 @@ namespace SI_Kasir_Toko
             {
                 if (row.Cells["Jumlah"].Value != null && row.Cells["Harga"].Value != null)
                 {
-                    int jumlah = Convert.ToInt32(row.Cells["Jumlah"].Value);
-                    int harga = Convert.ToInt32(row.Cells["Harga"].Value);
-                    int total = jumlah * harga;
-
-                    row.Cells["Total"].Value = total;
-                    totalBelanja += total;
+                    if (int.TryParse(row.Cells["Jumlah"].Value.ToString(), out int jumlah) &&
+                        int.TryParse(row.Cells["Harga"].Value.ToString(), out int harga))
+                    {
+                        int total = jumlah * harga;
+                        row.Cells["Total"].Value = total;
+                        totalBelanja += total;
+                    }
+                    else
+                    {
+                        row.Cells["Total"].Value = 0; // Set default value if conversion fails
+                    }
                 }
             }
 
@@ -266,7 +292,7 @@ namespace SI_Kasir_Toko
 
         private void fieldTotalBelanja_ValueChanged(object sender, EventArgs e)
         {
-
+            // Event handler placeholder
         }
     }
 }

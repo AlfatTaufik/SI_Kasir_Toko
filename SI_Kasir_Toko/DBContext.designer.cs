@@ -1045,6 +1045,10 @@ namespace SI_Kasir_Toko
 		
 		private string _Nama;
 		
+		private System.Nullable<int> _Stok;
+		
+		private System.Nullable<int> _Harga;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1053,6 +1057,10 @@ namespace SI_Kasir_Toko
     partial void OnBarcodeIDChanged();
     partial void OnNamaChanging(string value);
     partial void OnNamaChanged();
+    partial void OnStokChanging(System.Nullable<int> value);
+    partial void OnStokChanged();
+    partial void OnHargaChanging(System.Nullable<int> value);
+    partial void OnHargaChanged();
     #endregion
 		
 		public Barcode2()
@@ -1096,6 +1104,46 @@ namespace SI_Kasir_Toko
 					this._Nama = value;
 					this.SendPropertyChanged("Nama");
 					this.OnNamaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stok", DbType="Int")]
+		public System.Nullable<int> Stok
+		{
+			get
+			{
+				return this._Stok;
+			}
+			set
+			{
+				if ((this._Stok != value))
+				{
+					this.OnStokChanging(value);
+					this.SendPropertyChanging();
+					this._Stok = value;
+					this.SendPropertyChanged("Stok");
+					this.OnStokChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Harga", DbType="Int")]
+		public System.Nullable<int> Harga
+		{
+			get
+			{
+				return this._Harga;
+			}
+			set
+			{
+				if ((this._Harga != value))
+				{
+					this.OnHargaChanging(value);
+					this.SendPropertyChanging();
+					this._Harga = value;
+					this.SendPropertyChanged("Harga");
+					this.OnHargaChanged();
 				}
 			}
 		}

@@ -11,7 +11,7 @@ namespace SI_Kasir_Toko
         {
             InitializeComponent();
             var id = Db.Employees.FirstOrDefault(e => e.Role);
-            role = id.ID;
+            //role = id.ID;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -52,12 +52,14 @@ namespace SI_Kasir_Toko
                         dashboardAdmin.Show();
                         this.Hide();
                         MessageBox.Show($"Login Berhasil, selamat datang Admin {usernameNow}", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        role = usernameLogin.Role;
                     }
                     else
                     {
                         dashboardKasir.Show();
                         this.Hide();
                         MessageBox.Show($"Login Berhasil, selamat datang Kasir {usernameNow}", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        role = usernameLogin.Role;
                     }
                 }
                 else

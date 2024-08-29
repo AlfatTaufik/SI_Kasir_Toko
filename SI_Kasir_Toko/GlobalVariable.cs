@@ -9,7 +9,7 @@ namespace SI_Kasir_Toko
     internal class GlobalVariable
     {
         public static string fullName { get; set; }
-        public static int role { get; set; }
+        public static bool role { get; set; }
 
         public static DBContextDataContext Db = new DBContextDataContext();
         public static Form1 getStarted;

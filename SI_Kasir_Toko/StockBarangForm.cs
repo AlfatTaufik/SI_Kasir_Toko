@@ -74,8 +74,16 @@ namespace SI_Kasir_Toko
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            dashboardKasir.Show();
-            this.Hide();
+            if (role == true)
+            {
+                dashboardKasir.Show();
+                this.Hide();
+            }
+            else
+            {
+                dashboardAdmin.Show();
+                this.Hide();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

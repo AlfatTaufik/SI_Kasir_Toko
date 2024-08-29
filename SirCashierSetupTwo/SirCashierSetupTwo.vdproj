@@ -21,14 +21,38 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_15F01495DF929FC8EA0804C57F8A6467"
+        "OwnerKey" = "8:_31D6A34751624F928F1C0B733FD37F5B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_31D6A34751624F928F1C0B733FD37F5B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6817E8718F9389C3ACF4244580416CBC"
         "OwnerKey" = "8:_9F6B11072C96429D96EACA8D443B74E0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_6817E8718F9389C3ACF4244580416CBC"
+        "OwnerKey" = "8:_31D6A34751624F928F1C0B733FD37F5B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_68824E4907931A64371B9245323A2D8F"
         "OwnerKey" = "8:_9F6B11072C96429D96EACA8D443B74E0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_68824E4907931A64371B9245323A2D8F"
+        "OwnerKey" = "8:_31D6A34751624F928F1C0B733FD37F5B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -51,6 +75,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CF8AC8DB88A8C8CD11FDC414DDDD83D8"
+        "OwnerKey" = "8:_31D6A34751624F928F1C0B733FD37F5B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_EF842C088F124DCBB62D10043E6134E3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -58,13 +88,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CF8AC8DB88A8C8CD11FDC414DDDD83D8"
+        "OwnerKey" = "8:_9F6B11072C96429D96EACA8D443B74E0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9F6B11072C96429D96EACA8D443B74E0"
+        "OwnerKey" = "8:_31D6A34751624F928F1C0B733FD37F5B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -85,6 +115,12 @@
         "OwnerKey" = "8:_6817E8718F9389C3ACF4244580416CBC"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CF8AC8DB88A8C8CD11FDC414DDDD83D8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -103,6 +139,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -113,12 +165,28 @@
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
-        "Compression" = "3:2"
+        "Compression" = "3:1"
         "SignOutput" = "11:FALSE"
         "CertificateFile" = "8:"
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -349,7 +417,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SirCashierSetupTwo"
         "ProductCode" = "8:{9D4EB801-077C-4C15-B180-1188701D74C0}"
-        "PackageCode" = "8:{F13CC992-C1AF-4C5E-A747-4DAE74ABF847}"
+        "PackageCode" = "8:{24BB8DA1-9082-41F4-B2F1-0FD74264C5A5}"
         "UpgradeCode" = "8:{3BA6445D-37F4-4BAC-B4DB-EDF3676F927E}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -882,9 +950,37 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_31D6A34751624F928F1C0B733FD37F5B"
+            {
+            "SourcePath" = "8:..\\SI_Kasir_Toko\\obj\\Debug\\SI_Kasir_Toko.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D8A70545AC05412D87A1E3AD3F2D6C7A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{B3DE261F-6EEE-45AA-85F6-39EEB5F4F4F9}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9F6B11072C96429D96EACA8D443B74E0"
             {
-            "SourcePath" = "8:..\\SI_Kasir_Toko\\obj\\Release\\SI_Kasir_Toko.exe"
+            "SourcePath" = "8:..\\SI_Kasir_Toko\\obj\\Debug\\SI_Kasir_Toko.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D8A70545AC05412D87A1E3AD3F2D6C7A"

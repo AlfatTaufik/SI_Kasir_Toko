@@ -16,7 +16,7 @@ namespace SI_Kasir_Toko
         public FormBarang()
         {
             InitializeComponent();
-
+            btnEdit.Enabled = false;
         }
 
         private void loadDataBarang()
@@ -26,6 +26,8 @@ namespace SI_Kasir_Toko
                              {
                                  Kode = barang.BarcodeID,
                                  Nama = barang.Nama,
+                                 Stok = barang.Stok,
+                                 Harga = barang.Harga,
                              };
             dataGridView1.DataSource = dataBarang.ToList();
         }
@@ -37,8 +39,16 @@ namespace SI_Kasir_Toko
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            dashboardAdmin.Show();
-            this.Hide();
+            if(role == true)
+            {
+                dashboardKasir.Show();
+                this.Hide();
+            }
+            else
+            {
+                dashboardAdmin.Show();
+                this.Hide();
+            }
         }
 
         private bool isInputValid()
@@ -75,7 +85,9 @@ namespace SI_Kasir_Toko
                     Barcode2 newBarang = new Barcode2
                     {
                         BarcodeID = barcodeIDValue,
-                        Nama = fieldBarang.Text
+                        Nama = fieldBarang.Text,
+                        Stok = Convert.ToInt32(fieldStock.Text),
+                        Harga = Convert.ToInt32(fieldHarga.Text),
                     };
 
                     Db.Barcode2s.InsertOnSubmit(newBarang);
@@ -103,6 +115,7 @@ namespace SI_Kasir_Toko
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            txtBarang.Text = "";
             fieldBarang.Text = "";
             fieldStock.Value = 0;
             fieldHarga.Value = 0;
@@ -111,70 +124,74 @@ namespace SI_Kasir_Toko
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
-                string namaBarang = selectedRow.Cells[1].Value != null ? selectedRow.Cells[1].Value.ToString() : "";
-                int hargaBarang = selectedRow.Cells[2].Value != null ? Convert.ToInt32(selectedRow.Cells[2].Value) : 0;
-                int stokBarang = selectedRow.Cells[3].Value != null ? Convert.ToInt32(selectedRow.Cells[3].Value) : 0;
-                DateTime? dataMasuk = selectedRow.Cells[4].Value != null ? Convert.ToDateTime(selectedRow.Cells[4].Value) : (DateTime?)null;
 
+                string IDBarang = selectedRow.Cells["Kode"].Value != null ? selectedRow.Cells["Kode"].Value.ToString() : "";
+                string namaBarang = selectedRow.Cells["Nama"].Value != null ? selectedRow.Cells["Nama"].Value.ToString() : "";
+                int stok = selectedRow.Cells["Stok"].Value != null && int.TryParse(selectedRow.Cells["Stok"].Value.ToString(), out int stokValue) ? stokValue : 0;
+                int harga = selectedRow.Cells["Harga"].Value != null && int.TryParse(selectedRow.Cells["Harga"].Value.ToString(), out int hargaValue) ? hargaValue : 0;
+
+                // Mengisi field pada form dengan data yang diambil dari DataGridView
+                txtBarang.Text = IDBarang;
                 fieldBarang.Text = namaBarang;
-                fieldHarga.Value = hargaBarang;
-                fieldStock.Value = stokBarang;
-                fieldDataMasuk.Value = dataMasuk ?? DateTime.Now;
+                fieldStock.Value = stok;
+                fieldHarga.Value = harga;
 
-                nameBarang = namaBarang;
+                btnEdit.Enabled = true;
             }
         }
+
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (fieldBarang.Text != "")
+            if (long.TryParse(txtBarang.Text, out long valueID)) // Memperbaiki penggunaan TryParse
             {
-                var editListed = Db.Barangs.FirstOrDefault(i => i.NamaBarang == nameBarang);
-                if (editListed != null)
+                if (fieldBarang.Text != "")
                 {
-                    editListed.ID = editListed.ID;
-                    editListed.NamaBarang = fieldBarang.Text;
-                    editListed.StokBarang = Convert.ToInt32(fieldStock.Value);
-                    editListed.HargaBarang = Convert.ToInt32(fieldHarga.Value);
-                    editListed.DataMasuk = fieldDataMasuk.Value;
-
-                    Db.SubmitChanges();
-                    MessageBox.Show("Data Berhasil Dirubah", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Silakan pilih data yang ingin anda rubah lebih dahulu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0 || !string.IsNullOrEmpty(fieldBarang.Text))
-            {
-                var result = MessageBox.Show("Yakin ingin mengubah stok barang ini menjadi 0?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    var barang = Db.Barangs.FirstOrDefault(i => i.NamaBarang == fieldBarang.Text);
-                    if (barang != null)
+                    var editListed = Db.Barcode2s.FirstOrDefault(i => i.BarcodeID == valueID); // Menggunakan fieldBarang.Text untuk pencarian
+                    if (editListed != null)
                     {
-                        barang.StokBarang = 0; // Mengubah stok barang menjadi 0
+                        editListed.Nama = fieldBarang.Text;
+                        editListed.Stok = Convert.ToInt32(fieldStock.Value);
+                        editListed.Harga = Convert.ToInt32(fieldHarga.Value);
+
                         Db.SubmitChanges();
-                        MessageBox.Show("Stok barang berhasil diubah menjadi 0", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Data Berhasil Dirubah", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Barang tidak ditemukan", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("pilih data yang ingin anda rubah lebih dahulu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Silakan pilih data yang ingin anda rubah lebih dahulu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
             }
             else
             {
-                MessageBox.Show("Silakan pilih data yang ingin anda ubah lebih dahulu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("ID Barang tidak valid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count >= 0)
+            {
+                var selectedBarang = Db.Barcode2s.FirstOrDefault(i => i.Nama == fieldBarang.Text);
+                if (selectedBarang != null)
+                {
+                    selectedBarang.Stok = 0;
+                    Db.SubmitChanges();
+                    MessageBox.Show("Oke");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Silakan pilih barang yang ingin direset stoknya.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -259,16 +276,19 @@ namespace SI_Kasir_Toko
             var textSearched = txtBarang.Text;
             if (!string.IsNullOrEmpty(txtBarang.Text))
             {
-                var dataTransaksi = (from transaksi in Db.Barcode2s
-                                     select new
-                                     {
-                                         Code_Transaksi = transaksi.BarcodeID,
-                                         Nama_Barang = transaksi.Nama,
-                                     }).ToList(); // Panggil ToList() untuk memuat data ke dalam memori
+                var dataTransaksi = from transaksi in Db.Barcode2s
+                                    select new
+                                    {
+                                        Nama = transaksi.Nama,
+                                        Kode = transaksi.BarcodeID,
+                                        Stock = transaksi.Stok,
+                                        Harga = transaksi.Harga,
+                                    };
 
                 // Terapkan filter dalam memori menggunakan LINQ to Objects
-                var filteredDataTransaksi = dataTransaksi.Where(i => i.Nama_Barang.ToLower().Contains(textSearched) ||
-                                                                     i.Code_Transaksi.ToString().Equals(textSearched)).ToList();
+                var filteredDataTransaksi = dataTransaksi.Where(i => i.Nama.ToLower().Contains(textSearched) ||
+                                                                     i.Kode.ToString().Contains(textSearched)).ToList();
+                dataGridView1.DataSource = filteredDataTransaksi;
 
                 if (dataTransaksi != null)
                 {
