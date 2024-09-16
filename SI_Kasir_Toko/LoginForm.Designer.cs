@@ -179,7 +179,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SI_Kasir_Toko.Properties.Resources.LoginForm;
-            this.pictureBox1.Location = new System.Drawing.Point(405, 35);
+            this.pictureBox1.Location = new System.Drawing.Point(405, 49);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(382, 352);
