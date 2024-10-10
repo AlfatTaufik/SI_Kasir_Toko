@@ -21,13 +21,13 @@ namespace SI_Kasir_Toko
 
         private void loadDataBarang()
         {
-            var dataBarang = from barang in Db.Barcode2s
+            var dataBarang = from barang in Db.Barangs
                              select new
                              {
-                                 Kode = barang.BarcodeID,
-                                 Nama = barang.Nama,
-                                 Stok = barang.Stok,
-                                 Harga = barang.Harga,
+                                 Kode = barang.KodeBarang,
+                                 Nama = barang.NamaBarang,
+                                 Stok = barang.StokBarang,
+                                 Harga = barang.HargaBarang,
                              };
             dataGridView1.DataSource = dataBarang.ToList();
         }
@@ -82,15 +82,16 @@ namespace SI_Kasir_Toko
             {
                 if (long.TryParse(txtBarang.Text, out long barcodeIDValue))
                 {
-                    Barcode2 newBarang = new Barcode2
+                    Barang newBarang = new Barang
                     {
-                        BarcodeID = barcodeIDValue,
-                        Nama = fieldBarang.Text,
-                        Stok = Convert.ToInt32(fieldStock.Text),
-                        Harga = Convert.ToInt32(fieldHarga.Text),
+                        KodeBarang = barcodeIDValue.ToString(),
+                        NamaBarang = fieldBarang.Text,
+                        StokBarang = Convert.ToInt32(fieldStock.Text),
+                        HargaBarang = Convert.ToInt32(fieldHarga.Text),
+                        DataMasuk = fieldDataMasuk.Value
                     };
 
-                    Db.Barcode2s.InsertOnSubmit(newBarang);
+                    Db.Barangs.InsertOnSubmit(newBarang);
                     Db.SubmitChanges();
 
                     MessageBox.Show("Data Barang Berhasil Dimasukan.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -150,12 +151,12 @@ namespace SI_Kasir_Toko
             {
                 if (fieldBarang.Text != "")
                 {
-                    var editListed = Db.Barcode2s.FirstOrDefault(i => i.BarcodeID == valueID); // Menggunakan fieldBarang.Text untuk pencarian
+                    var editListed = Db.Barangs.FirstOrDefault(i => i.KodeBarang == valueID.ToString()); // Menggunakan fieldBarang.Text untuk pencarian
                     if (editListed != null)
                     {
-                        editListed.Nama = fieldBarang.Text;
-                        editListed.Stok = Convert.ToInt32(fieldStock.Value);
-                        editListed.Harga = Convert.ToInt32(fieldHarga.Value);
+                        editListed.NamaBarang = fieldBarang.Text;
+                        editListed.StokBarang = Convert.ToInt32(fieldStock.Value);
+                        editListed.HargaBarang = Convert.ToInt32(fieldHarga.Value);
 
                         Db.SubmitChanges();
                         MessageBox.Show("Data Berhasil Dirubah", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -181,10 +182,10 @@ namespace SI_Kasir_Toko
         {
             if (dataGridView1.SelectedRows.Count >= 0)
             {
-                var selectedBarang = Db.Barcode2s.FirstOrDefault(i => i.Nama == fieldBarang.Text);
+                var selectedBarang = Db.Barangs.FirstOrDefault(i => i.NamaBarang == fieldBarang.Text);
                 if (selectedBarang != null)
                 {
-                    selectedBarang.Stok = 0;
+                    selectedBarang.StokBarang = 0;
                     Db.SubmitChanges();
                     MessageBox.Show("Oke");
                 }
@@ -276,13 +277,13 @@ namespace SI_Kasir_Toko
             var textSearched = txtBarang.Text;
             if (!string.IsNullOrEmpty(txtBarang.Text))
             {
-                var dataTransaksi = from transaksi in Db.Barcode2s
+                var dataTransaksi = from transaksi in Db.Barangs
                                     select new
                                     {
-                                        Nama = transaksi.Nama,
-                                        Kode = transaksi.BarcodeID,
-                                        Stock = transaksi.Stok,
-                                        Harga = transaksi.Harga,
+                                        Nama = transaksi.NamaBarang,
+                                        Kode = transaksi.KodeBarang,
+                                        Stock = transaksi.StokBarang,
+                                        Harga = transaksi.HargaBarang,
                                     };
 
                 // Terapkan filter dalam memori menggunakan LINQ to Objects

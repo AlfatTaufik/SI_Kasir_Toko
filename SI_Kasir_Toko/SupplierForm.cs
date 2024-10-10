@@ -256,21 +256,45 @@ namespace SI_Kasir_Toko
                             pdfTable.WidthPercentage = 100;
                             pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
 
+                            // Tambahkan header tabel
                             foreach (DataGridViewColumn column in dgvSupplier.Columns)
                             {
                                 PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
                                 pdfTable.AddCell(cell);
                             }
 
+                            // Tambahkan data dari DataGridView
+                            decimal totalBelanjaan = 0; // Inisialisasi variabel untuk total belanjaan
                             foreach (DataGridViewRow row in dgvSupplier.Rows)
                             {
                                 foreach (DataGridViewCell cell in row.Cells)
                                 {
                                     // Periksa apakah cell.Value adalah null
-                                    pdfTable.AddCell(cell.Value?.ToString() ?? string.Empty);
+                                    string cellValue = cell.Value?.ToString() ?? string.Empty;
+                                    pdfTable.AddCell(cellValue);
+
+                                    // Jika kolom ini mewakili belanjaan, tambahkan nilainya ke total
+                                    if (dgvSupplier.Columns[cell.ColumnIndex].Name == "TotalBelanjaan") // Sesuaikan dengan nama kolom yang digunakan
+                                    {
+                                        decimal belanjaan;
+                                        if (decimal.TryParse(cellValue, out belanjaan))
+                                        {
+                                            totalBelanjaan += belanjaan;
+                                        }
+                                    }
                                 }
                             }
 
+                            // Tambahkan baris untuk total belanjaan
+                            PdfPCell totalCell = new PdfPCell(new Phrase("Total Belanjaan:"));
+                            totalCell.Colspan = dgvSupplier.Columns.Count - 1; // Menggabungkan beberapa kolom
+                            totalCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                            pdfTable.AddCell(totalCell);
+
+                            PdfPCell totalValueCell = new PdfPCell(new Phrase(totalBelanjaan.ToString("C"))); // Format sebagai mata uang
+                            pdfTable.AddCell(totalValueCell);
+
+                            // Membuat file PDF
                             using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
                             {
                                 Document pdfDoc = new Document(PageSize.A4, 10f, 20f, 20f, 10f);
@@ -296,4 +320,4 @@ namespace SI_Kasir_Toko
             }
         }
     }
-}
+    }

@@ -30,9 +30,6 @@ namespace SI_Kasir_Toko
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertBarang(Barang instance);
-    partial void UpdateBarang(Barang instance);
-    partial void DeleteBarang(Barang instance);
     partial void InsertEmployee(Employee instance);
     partial void UpdateEmployee(Employee instance);
     partial void DeleteEmployee(Employee instance);
@@ -45,6 +42,9 @@ namespace SI_Kasir_Toko
     partial void InsertBarcode2(Barcode2 instance);
     partial void UpdateBarcode2(Barcode2 instance);
     partial void DeleteBarcode2(Barcode2 instance);
+    partial void InsertBarang(Barang instance);
+    partial void UpdateBarang(Barang instance);
+    partial void DeleteBarang(Barang instance);
     #endregion
 		
 		public DBContextDataContext() : 
@@ -75,14 +75,6 @@ namespace SI_Kasir_Toko
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Barang> Barangs
-		{
-			get
-			{
-				return this.GetTable<Barang>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Employee> Employees
@@ -116,191 +108,13 @@ namespace SI_Kasir_Toko
 				return this.GetTable<Barcode2>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Barang")]
-	public partial class Barang : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _NamaBarang;
-		
-		private int _HargaBarang;
-		
-		private int _StokBarang;
-		
-		private System.DateTime _DataMasuk;
-		
-		private EntitySet<Transaction> _Transactions;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnNamaBarangChanging(string value);
-    partial void OnNamaBarangChanged();
-    partial void OnHargaBarangChanging(int value);
-    partial void OnHargaBarangChanged();
-    partial void OnStokBarangChanging(int value);
-    partial void OnStokBarangChanged();
-    partial void OnDataMasukChanging(System.DateTime value);
-    partial void OnDataMasukChanged();
-    #endregion
-		
-		public Barang()
-		{
-			this._Transactions = new EntitySet<Transaction>(new Action<Transaction>(this.attach_Transactions), new Action<Transaction>(this.detach_Transactions));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		public System.Data.Linq.Table<Barang> Barangs
 		{
 			get
 			{
-				return this._ID;
+				return this.GetTable<Barang>();
 			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NamaBarang", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string NamaBarang
-		{
-			get
-			{
-				return this._NamaBarang;
-			}
-			set
-			{
-				if ((this._NamaBarang != value))
-				{
-					this.OnNamaBarangChanging(value);
-					this.SendPropertyChanging();
-					this._NamaBarang = value;
-					this.SendPropertyChanged("NamaBarang");
-					this.OnNamaBarangChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HargaBarang", DbType="Int NOT NULL")]
-		public int HargaBarang
-		{
-			get
-			{
-				return this._HargaBarang;
-			}
-			set
-			{
-				if ((this._HargaBarang != value))
-				{
-					this.OnHargaBarangChanging(value);
-					this.SendPropertyChanging();
-					this._HargaBarang = value;
-					this.SendPropertyChanged("HargaBarang");
-					this.OnHargaBarangChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StokBarang", DbType="Int NOT NULL")]
-		public int StokBarang
-		{
-			get
-			{
-				return this._StokBarang;
-			}
-			set
-			{
-				if ((this._StokBarang != value))
-				{
-					this.OnStokBarangChanging(value);
-					this.SendPropertyChanging();
-					this._StokBarang = value;
-					this.SendPropertyChanged("StokBarang");
-					this.OnStokBarangChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataMasuk", DbType="DateTime NOT NULL")]
-		public System.DateTime DataMasuk
-		{
-			get
-			{
-				return this._DataMasuk;
-			}
-			set
-			{
-				if ((this._DataMasuk != value))
-				{
-					this.OnDataMasukChanging(value);
-					this.SendPropertyChanging();
-					this._DataMasuk = value;
-					this.SendPropertyChanged("DataMasuk");
-					this.OnDataMasukChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Barang_Transaction", Storage="_Transactions", ThisKey="ID", OtherKey="IDBarang")]
-		public EntitySet<Transaction> Transactions
-		{
-			get
-			{
-				return this._Transactions;
-			}
-			set
-			{
-				this._Transactions.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Transactions(Transaction entity)
-		{
-			this.SendPropertyChanging();
-			entity.Barang = this;
-		}
-		
-		private void detach_Transactions(Transaction entity)
-		{
-			this.SendPropertyChanging();
-			entity.Barang = null;
 		}
 	}
 	
@@ -1166,6 +980,216 @@ namespace SI_Kasir_Toko
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Barang")]
+	public partial class Barang : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _NamaBarang;
+		
+		private int _HargaBarang;
+		
+		private int _StokBarang;
+		
+		private System.DateTime _DataMasuk;
+		
+		private string _KodeBarang;
+		
+		private EntitySet<Transaction> _Transactions;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnNamaBarangChanging(string value);
+    partial void OnNamaBarangChanged();
+    partial void OnHargaBarangChanging(int value);
+    partial void OnHargaBarangChanged();
+    partial void OnStokBarangChanging(int value);
+    partial void OnStokBarangChanged();
+    partial void OnDataMasukChanging(System.DateTime value);
+    partial void OnDataMasukChanged();
+    partial void OnKodeBarangChanging(string value);
+    partial void OnKodeBarangChanged();
+    #endregion
+		
+		public Barang()
+		{
+			this._Transactions = new EntitySet<Transaction>(new Action<Transaction>(this.attach_Transactions), new Action<Transaction>(this.detach_Transactions));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NamaBarang", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string NamaBarang
+		{
+			get
+			{
+				return this._NamaBarang;
+			}
+			set
+			{
+				if ((this._NamaBarang != value))
+				{
+					this.OnNamaBarangChanging(value);
+					this.SendPropertyChanging();
+					this._NamaBarang = value;
+					this.SendPropertyChanged("NamaBarang");
+					this.OnNamaBarangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HargaBarang", DbType="Int NOT NULL")]
+		public int HargaBarang
+		{
+			get
+			{
+				return this._HargaBarang;
+			}
+			set
+			{
+				if ((this._HargaBarang != value))
+				{
+					this.OnHargaBarangChanging(value);
+					this.SendPropertyChanging();
+					this._HargaBarang = value;
+					this.SendPropertyChanged("HargaBarang");
+					this.OnHargaBarangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StokBarang", DbType="Int NOT NULL")]
+		public int StokBarang
+		{
+			get
+			{
+				return this._StokBarang;
+			}
+			set
+			{
+				if ((this._StokBarang != value))
+				{
+					this.OnStokBarangChanging(value);
+					this.SendPropertyChanging();
+					this._StokBarang = value;
+					this.SendPropertyChanged("StokBarang");
+					this.OnStokBarangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataMasuk", DbType="DateTime NOT NULL")]
+		public System.DateTime DataMasuk
+		{
+			get
+			{
+				return this._DataMasuk;
+			}
+			set
+			{
+				if ((this._DataMasuk != value))
+				{
+					this.OnDataMasukChanging(value);
+					this.SendPropertyChanging();
+					this._DataMasuk = value;
+					this.SendPropertyChanged("DataMasuk");
+					this.OnDataMasukChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KodeBarang", DbType="VarChar(MAX)")]
+		public string KodeBarang
+		{
+			get
+			{
+				return this._KodeBarang;
+			}
+			set
+			{
+				if ((this._KodeBarang != value))
+				{
+					this.OnKodeBarangChanging(value);
+					this.SendPropertyChanging();
+					this._KodeBarang = value;
+					this.SendPropertyChanged("KodeBarang");
+					this.OnKodeBarangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Barang_Transaction", Storage="_Transactions", ThisKey="ID", OtherKey="IDBarang")]
+		public EntitySet<Transaction> Transactions
+		{
+			get
+			{
+				return this._Transactions;
+			}
+			set
+			{
+				this._Transactions.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Transactions(Transaction entity)
+		{
+			this.SendPropertyChanging();
+			entity.Barang = this;
+		}
+		
+		private void detach_Transactions(Transaction entity)
+		{
+			this.SendPropertyChanging();
+			entity.Barang = null;
 		}
 	}
 }

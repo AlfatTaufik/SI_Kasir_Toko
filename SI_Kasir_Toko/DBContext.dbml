@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SI_KASIR_PBO" Class="DBContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=SI_KASIR_PBO;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="SI_Kasir_Toko.Properties.Settings" SettingsPropertyName="SI_KASIR_PBOConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Barang" Member="Barangs">
-    <Type Name="Barang">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="NamaBarang" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="HargaBarang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StokBarang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DataMasuk" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Barang_Transaction" Member="Transactions" ThisKey="ID" OtherKey="IDBarang" Type="Transaction" />
-    </Type>
-  </Table>
   <Table Name="dbo.Employee" Member="Employees">
     <Type Name="Employee">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -53,6 +43,17 @@
       <Column Name="Nama" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Stok" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Harga" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Barang" Member="Barangs">
+    <Type Name="Barang">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NamaBarang" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="HargaBarang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StokBarang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DataMasuk" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="KodeBarang" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Barang_Transaction" Member="Transactions" ThisKey="ID" OtherKey="IDBarang" Type="Transaction" />
     </Type>
   </Table>
 </Database>

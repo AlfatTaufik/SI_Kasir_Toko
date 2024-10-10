@@ -44,7 +44,7 @@ namespace SI_Kasir_Toko
             var dataBarang = from barang in Db.Barangs
                              select new
                              {
-                                 Kode = barang.ID,
+                                 Kode = barang.KodeBarang,
                                  Nama = barang.NamaBarang,
                                  Harga = barang.HargaBarang,
                                  Stock = barang.StokBarang,
@@ -164,6 +164,7 @@ namespace SI_Kasir_Toko
             {
                 DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
                 string namaBarang = selectedRow.Cells[1].Value != null ? selectedRow.Cells[1].Value.ToString() : "";
+                string kodeBarang = selectedRow.Cells[1].Value != null ? selectedRow.Cells[0].Value.ToString() : "";
                 int hargaBarang = selectedRow.Cells[2].Value != null ? Convert.ToInt32(selectedRow.Cells[2].Value) : 0;
                 int stokBarang = selectedRow.Cells[3].Value != null ? Convert.ToInt32(selectedRow.Cells[3].Value) : 0;
                 DateTime? dataMasuk = selectedRow.Cells[4].Value != null ? Convert.ToDateTime(selectedRow.Cells[4].Value) : (DateTime?)null;
@@ -171,7 +172,7 @@ namespace SI_Kasir_Toko
                 int newRowIdx = dataGridView2.Rows.Add();
 
                 DataGridViewRow newRow = dataGridView2.Rows[newRowIdx];
-                newRow.Cells["Code"].Value = newRowIdx + 1;
+                newRow.Cells["Code"].Value = kodeBarang;
                 newRow.Cells["Nama"].Value = namaBarang;
                 newRow.Cells["Jumlah"].Value = 1;
                 newRow.Cells["Harga"].Value = hargaBarang;
@@ -195,12 +196,13 @@ namespace SI_Kasir_Toko
                 var dataBarang = (from barang in Db.Barangs
                                   select new
                                   {
-                                      Kode = barang.ID,
+                                      //Kode = barang.ID,
+                                      KodeBarang = barang.KodeBarang,
                                       Nama = barang.NamaBarang,
                                       Harga = barang.HargaBarang,
                                       Stock = barang.StokBarang,
                                       Masuk = barang.DataMasuk
-                                  }).Where(i => i.Nama.ToLower().Contains(textSearched));
+                                  }).Where(i => i.Nama.ToLower().Contains(textSearched) || i.KodeBarang.Contains(textSearched));
                 dataGridView1.DataSource = dataBarang.ToList();
             }
             else
